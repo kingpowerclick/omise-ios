@@ -4,7 +4,7 @@ import Foundation
 /// UITextField subclass for entering the credit card number.
 /// Automatically formats entered number into groups of four.
 @objc(OMSCardNumberTextField) @IBDesignable
-public class CardNumberTextField: OmiseTextField {
+open class CardNumberTextField: OmiseTextField {
 
     /// The current PAN
     public var pan: PAN {
@@ -16,11 +16,11 @@ public class CardNumberTextField: OmiseTextField {
         return pan.brand
     }
     
-    public override var tokenizer: UITextInputTokenizer {
+    open override var tokenizer: UITextInputTokenizer {
         return cardNumberStringTokenizer
     }
     
-    public override var selectedTextRange: UITextRange? {
+    open override var selectedTextRange: UITextRange? {
         didSet {
             guard let selectedTextRange = self.selectedTextRange else {
                 return
@@ -42,7 +42,7 @@ public class CardNumberTextField: OmiseTextField {
     }
     
     @available(iOS, unavailable)
-    public override var delegate: UITextFieldDelegate? {
+    open override var delegate: UITextFieldDelegate? {
         get {
             return self
         }
@@ -85,7 +85,7 @@ public class CardNumberTextField: OmiseTextField {
         }
     }
     
-    public override func becomeFirstResponder() -> Bool {
+    open override func becomeFirstResponder() -> Bool {
         let spacingIndexes = pan.suggestedSpaceFormattedIndexes
         if let attributedText = attributedText, spacingIndexes.contains(attributedText.length) {
             let formattingAttributedText = NSMutableAttributedString(attributedString: attributedText)
@@ -100,7 +100,7 @@ public class CardNumberTextField: OmiseTextField {
         return super.becomeFirstResponder()
     }
     
-    public override func resignFirstResponder() -> Bool {
+    open override func resignFirstResponder() -> Bool {
         let spacingIndexes = pan.suggestedSpaceFormattedIndexes
         if let attributedText = attributedText, spacingIndexes.contains(attributedText.length) {
             let formattingAttributedText = NSMutableAttributedString(attributedString: attributedText)
@@ -111,7 +111,7 @@ public class CardNumberTextField: OmiseTextField {
         return super.resignFirstResponder()
     }
     
-    public override func paste(_ sender: Any?) {
+    open override func paste(_ sender: Any?) {
         let pasteboard = UIPasteboard.general
         
         guard let copiedText = pasteboard.string, let selectedTextRange = selectedTextRange else {

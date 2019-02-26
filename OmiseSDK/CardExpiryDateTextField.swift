@@ -5,7 +5,7 @@ import UIKit
 /// UITextField subclass used for entering card's expiry date.
 /// `CardExpiryDatePicker` will be set as the default input view.
 @objc(OMSCardExpiryDateTextField) @IBDesignable
-public class CardExpiryDateTextField: OmiseTextField {
+open class CardExpiryDateTextField: OmiseTextField {
     
     /// Currently selected month, `nil` if no month has been selected.
     public private(set) var selectedMonth: Int? = nil {
@@ -39,14 +39,14 @@ public class CardExpiryDateTextField: OmiseTextField {
     @objc private(set) public var expirationMonthAccessibilityElement: CardExpiryDateTextField.InfoAccessibilityElement!
     @objc private(set) public var expirationYearAccessibilityElement: CardExpiryDateTextField.InfoAccessibilityElement!
     
-    public override var keyboardType: UIKeyboardType {
+    open override var keyboardType: UIKeyboardType {
         didSet {
             super.keyboardType = .numberPad
         }
     }
     
     @available(iOS, unavailable)
-    public override var delegate: UITextFieldDelegate? {
+    open override var delegate: UITextFieldDelegate? {
         get {
             return self
         }
@@ -97,7 +97,7 @@ public class CardExpiryDateTextField: OmiseTextField {
         validator = try! NSRegularExpression(pattern: "^([0-1]?\\d)/(\\d{1,2})$", options: [])
     }
     
-    public override var accessibilityElements: [Any]? {
+    open override var accessibilityElements: [Any]? {
         get {
             return [expirationMonthAccessibilityElement as Any, expirationYearAccessibilityElement as Any]
         }
@@ -166,7 +166,7 @@ public class CardExpiryDateTextField: OmiseTextField {
         updateAccessibilityFrames()
     }
     
-    public override func deleteBackward() {
+    open override func deleteBackward() {
         if text?.last == "/" {
             isDeletingDateSeparator = true
             defer {
@@ -182,11 +182,11 @@ public class CardExpiryDateTextField: OmiseTextField {
     
     static let monthStringRegularExpression = try! NSRegularExpression(pattern: "^([0-1]?\\d)", options: [])
     
-    public override func replace(_ range: UITextRange, withText text: String) {
+    open override func replace(_ range: UITextRange, withText text: String) {
         super.replace(range, withText: text)
     }
 
-    public override func paste(_ sender: Any?) {
+    open override func paste(_ sender: Any?) {
         let pasteboard = UIPasteboard.general
         
         guard let copiedText = pasteboard.string, let selectedTextRange = selectedTextRange else {
@@ -258,7 +258,7 @@ public class CardExpiryDateTextField: OmiseTextField {
         }
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         updateAccessibilityFrames()
