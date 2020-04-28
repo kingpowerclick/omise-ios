@@ -7,6 +7,8 @@ import UIKit
 open class CardCVVTextField: OmiseTextField {
     private let validLengths = 3...4
     
+    public var shouldBeginEditingHandler: (() -> Bool)?
+    
     @available(iOS, unavailable)
     open override var delegate: UITextFieldDelegate? {
         get {
@@ -64,5 +66,9 @@ extension CardCVVTextField: UITextFieldDelegate {
         
         return maxLength >= (self.text?.count ?? 0) - range.length + string.count
     }
+    
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool
+    {
+        return shouldBeginEditingHandler?() ?? true
+    }
 }
-
