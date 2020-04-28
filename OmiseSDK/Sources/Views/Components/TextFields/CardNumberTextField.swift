@@ -15,6 +15,8 @@ public class CardNumberTextField: OmiseTextField {
         return pan.brand
     }
     
+    public var shouldBeginEditingHandler: (() -> Bool)?
+    
     public override var tokenizer: UITextInputTokenizer {
         return cardNumberStringTokenizer
     }
@@ -309,5 +311,10 @@ extension CardNumberTextField {
         let maxLength = (pan.brand?.validLengths.upperBound ?? 16)
         
         return maxLength >= (self.text?.count ?? 0) - range.length + string.count
+    }
+    
+    public func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool
+    {
+        return shouldBeginEditingHandler?() ?? true
     }
 }
