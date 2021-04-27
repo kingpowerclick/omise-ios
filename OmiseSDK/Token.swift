@@ -139,7 +139,7 @@ public enum ChargeStatus: String, Codable {
 }
 
 /// Represents an Omise Token object
-public struct Token: CreatableObject {
+public struct Token: CreatableObject, Hashable {
     public typealias CreateParameter = CreateTokenParameter
     
     public static let postURL: URL = Configuration.default.environment.tokenURL
@@ -178,7 +178,7 @@ public struct Token: CreatableObject {
     }
 }
 
-public struct Card: Decodable {
+public struct Card: Decodable, Hashable {
     /// Card's ID.
     public let id: String
     /// Boolean flag indicating wether this card is a live card or a test card.
