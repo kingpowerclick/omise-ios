@@ -3,18 +3,18 @@ import UIKit
 
 /// UITextField subclass for entering card's CVV number.
 @IBDesignable
-@objc(OMSCardCVVTextField) public class CardCVVTextField: OmiseTextField {
+@objc(OMSCardCVVTextField) open class CardCVVTextField: OmiseTextField {
     private let validLengths = 3...4
     
     @available(iOS, unavailable)
-    public override var delegate: UITextFieldDelegate? {
+    open override var delegate: UITextFieldDelegate? {
         get {
             return self
         }
         set {} // swiftlint:disable:this unused_setter_value
     }
     
-    public override var keyboardType: UIKeyboardType {
+    open override var keyboardType: UIKeyboardType {
         didSet {
             super.keyboardType = .numberPad
         }

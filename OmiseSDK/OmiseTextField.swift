@@ -12,7 +12,7 @@ public enum OmiseTextFieldValidationError: Error {
 
 /// Base UITextField subclass for SDK's text fields.
 @IBDesignable
-@objc(OMSOmiseTextField) public class OmiseTextField: UITextField {
+@objc(OMSOmiseTextField) open class OmiseTextField: UITextField {
     public var style: TextFieldStyle = .plain {
         didSet {
             updateBorder()
@@ -20,7 +20,7 @@ public enum OmiseTextFieldValidationError: Error {
         }
     }
     
-    @IBInspectable var borderWidth: CGFloat {
+    @IBInspectable open var borderWidth: CGFloat {
         get {
             switch style {
             case .plain:
@@ -39,31 +39,31 @@ public enum OmiseTextFieldValidationError: Error {
         }
     }
     
-    @IBInspectable var borderColor: UIColor? {
+    @IBInspectable open var borderColor: UIColor? {
         didSet {
             updateBorder()
         }
     }
     
-    @IBInspectable var cornerRadius: CGFloat = 0 {
+    @IBInspectable open var cornerRadius: CGFloat = 0 {
         didSet {
             updateBorder()
         }
     }
     
-    @IBInspectable var errorTextColor: UIColor? {
+    @IBInspectable open var errorTextColor: UIColor? {
         didSet {
             updateTextColor()
         }
     }
     
-    @IBInspectable var placeholderTextColor: UIColor? {
+    @IBInspectable open var placeholderTextColor: UIColor? {
         didSet {
             updatePlaceholderTextColor()
         }
     }
     
-    public override var placeholder: String? {
+    open override var placeholder: String? {
         didSet {
             updatePlaceholderTextColor()
         }
@@ -81,7 +81,7 @@ public enum OmiseTextFieldValidationError: Error {
     
     private var normalTextColor: UIColor?
     
-    public override var text: String? {
+    open override var text: String? {
         didSet {
             // UITextField doesn't send editing changed control event when we set its text property
             textDidChange()
@@ -89,7 +89,7 @@ public enum OmiseTextFieldValidationError: Error {
         }
     }
     
-    public override var textColor: UIColor? {
+    open override var textColor: UIColor? {
         get {
             return normalTextColor
         }
@@ -197,11 +197,11 @@ extension OmiseTextField {
         return edgeInsets
     }
     
-    public override func borderRect(forBounds bounds: CGRect) -> CGRect {
+    open override func borderRect(forBounds bounds: CGRect) -> CGRect {
         return bounds
     }
     
-    public override func textRect(forBounds bounds: CGRect) -> CGRect {
+    open override func textRect(forBounds bounds: CGRect) -> CGRect {
         return super.textRect(forBounds: textAreaViewRect(forBounds: bounds))
     }
     
@@ -213,11 +213,11 @@ extension OmiseTextField {
         return super.clearButtonRect(forBounds: textAreaViewRect(forBounds: bounds))
     }
     
-    public override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+    open override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         return super.rightViewRect(forBounds: textAreaViewRect(forBounds: bounds))
     }
     
-    public override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+    open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         return super.leftViewRect(forBounds: textAreaViewRect(forBounds: bounds))
     }
     
