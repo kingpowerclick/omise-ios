@@ -2,7 +2,7 @@ import Foundation
 
 extension Token {
     /// Represents Token.Card JSON object for communication with Omise API
-    public struct Card {
+    public struct Card: Hashable {
         /// Card's ID.
         public let id: String
         /// Boolean flag indicating wether this card is a live card or a test card.
