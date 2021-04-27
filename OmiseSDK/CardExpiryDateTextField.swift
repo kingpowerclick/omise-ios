@@ -4,7 +4,7 @@ import UIKit
 /// UITextField subclass used for entering card's expiry date.
 /// `CardExpiryDatePicker` will be set as the default input view.
 @IBDesignable
-@objc(OMSCardExpiryDateTextField) public class CardExpiryDateTextField: OmiseTextField {
+@objc(OMSCardExpiryDateTextField) open class CardExpiryDateTextField: OmiseTextField {
     
     /// Currently selected month, `nil` if no month has been selected.
     public private(set) var selectedMonth: Int? {
@@ -41,14 +41,14 @@ import UIKit
     @objc public private(set) var expirationMonthAccessibilityElement: CardExpiryDateTextField.InfoAccessibilityElement!
     @objc public private(set) var expirationYearAccessibilityElement: CardExpiryDateTextField.InfoAccessibilityElement!
     
-    public override var keyboardType: UIKeyboardType {
+    open override var keyboardType: UIKeyboardType {
         didSet {
             super.keyboardType = .numberPad
         }
     }
     
     @available(iOS, unavailable)
-    public override var delegate: UITextFieldDelegate? {
+    open override var delegate: UITextFieldDelegate? {
         get {
             return self
         }
@@ -93,7 +93,7 @@ import UIKit
         validator = try? NSRegularExpression(pattern: "^([0-1]?\\d)/(\\d{1,2})$", options: [])
     }
     
-    public override var accessibilityElements: [Any]? {
+    open override var accessibilityElements: [Any]? {
         get {
             return [expirationMonthAccessibilityElement as Any, expirationYearAccessibilityElement as Any]
         }
@@ -166,7 +166,7 @@ import UIKit
         updateAccessibilityFrames()
     }
     
-    public override func deleteBackward() {
+    open override func deleteBackward() {
         if text?.last == "/" {
             isDeletingDateSeparator = true
             defer {
@@ -182,12 +182,12 @@ import UIKit
     
     static let monthStringRegularExpression: NSRegularExpression! = try? NSRegularExpression(pattern: "^([0-1]?\\d)", options: [])
     
-    public override func replace(_ range: UITextRange, withText text: String) {
+    open override func replace(_ range: UITextRange, withText text: String) {
         super.replace(range, withText: text)
     }
 
     // swiftlint:disable:next cyclomatic_complexity function_body_length
-    public override func paste(_ sender: Any?) {
+    open override func paste(_ sender: Any?) {
         let pasteboard = UIPasteboard.general
         
         guard let copiedText = pasteboard.string, let selectedTextRange = selectedTextRange else {
@@ -261,7 +261,7 @@ import UIKit
         }
     }
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         updateAccessibilityFrames()
