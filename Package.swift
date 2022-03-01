@@ -11,7 +11,7 @@ let package = Package(
     products: [
         .library(
             name: "OmiseSDK",
-            type: .dynamic,
+//            type: .dynamic,
             targets: ["OmiseSDK"]
         )
     ],
