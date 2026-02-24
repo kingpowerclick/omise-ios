@@ -1,7 +1,7 @@
 import Foundation
 
 /// Represents Token JSON object for communication with Omise API
-public struct Token {
+public struct Token: Hashable {
     /// Omise ID of the token
     public let id: String
     /// Boolean indicates that if this Token is in the live mode
